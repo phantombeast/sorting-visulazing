@@ -179,7 +179,55 @@ window.onload = function () {
 
     
 
+    async function selectionSort(arr, interval) {
 
+        var len = arr.length;
+
+        for (var i = 0; i < len - 1; i = i + 1) {
+            var j_min = i;
+            for (var j = i + 1; j < len; j = j + 1) {
+                if (arr[j] < arr[j_min]) {
+                    myColors[j] = RED;
+                    myColors[j_min] = LIGHT_GREY;
+                    myColors[i] = GREEN;
+                    j_min = j;
+                    myChart.data.datasets[0].backgroundColor = myColors;
+                    myChart.update();
+                    await timer(interval);
+                } 
+                else { 
+                    myColors[j] = BLACK;
+                    myChart.data.datasets[0].backgroundColor = myColors;
+                    myChart.update();
+                    await timer(interval);
+                }
+
+                myColors[j] = LIGHT_GREY;
+                myColors[j_min] = RED;
+                myChart.data.datasets[0].backgroundColor = myColors;
+                myChart.update();
+
+            }
+            if (j_min !== i) {
+                swap(arr, i, j_min);
+                myColors[j_min] = LIGHT_GREY;
+                mydata = arr;
+                myChart.data.datasets[0].data = mydata;
+                myChart.data.datasets[0].backgroundColor = myColors;
+                myChart.update();
+            }
+
+            myColors[i] = DARK_GREEN;
+            myChart.data.datasets[0].backgroundColor = myColors;
+            myChart.update();
+        }
+        myColors[len-1] = DARK_GREEN;
+        myChart.data.datasets[0].backgroundColor = myColors;
+        myChart.update();
+        sortButton.disabled = false;
+        slider.disabled = false;
+        speedSlider.disabled = false;
+    }
 
     async function youpdte(d) {
         await timer(500);
