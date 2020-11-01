@@ -229,6 +229,24 @@ window.onload = function () {
         speedSlider.disabled = false;
     }
 
+    function heapSort(array) {
+        // Build our max heap.
+        buildMaxHeap(array);
+      
+        // Find last element.
+        lastElement = array.length - 1;
+      
+        // Continue heap sorting until we have
+        // just one element left in the array.
+        while(lastElement > 0) {
+          swap(array, 0, lastElement);
+      
+          heapify(array, 0, lastElement);
+      
+          lastElement -= 1
+        }
+      }
+
     async function youpdte(d) {
         await timer(500);
         myChart.data.datasets[0].data = mydata2;
