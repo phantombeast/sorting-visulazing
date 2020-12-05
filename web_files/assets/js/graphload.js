@@ -88,6 +88,12 @@ window.onload = function () {
         return new Promise(res => setTimeout(res, ms));
     }
 
+    function swap(arr, first_Index, second_Index) {
+        var temp = arr[first_Index];
+        arr[first_Index] = arr[second_Index];
+        arr[second_Index] = temp;
+    }
+
     async function insertionSort(arr, speed) {
         var len = arr.length;
         for (var i = 0; i < len; i++) {
@@ -124,8 +130,6 @@ window.onload = function () {
         slider.disabled = false;
         speedSlider.disabled = false;
     }
-
-
 
     async function bubble_Sort(arr, speed) {
 
@@ -176,8 +180,6 @@ window.onload = function () {
         slider.disabled = false;
         speedSlider.disabled = false;
     }
-
-    
 
     async function selectionSort(arr, interval) {
 
@@ -246,8 +248,7 @@ window.onload = function () {
           lastElement -= 1
         }
       }
-
-      function merge(left, right) {
+    function merge(left, right) {
         var result = [],
             i = 0,
             j = 0;
@@ -346,9 +347,7 @@ window.onload = function () {
     }
 
 
-
-
-
+    
     sortButton.onclick = function () {
 
         sortButton.disabled  = true;
